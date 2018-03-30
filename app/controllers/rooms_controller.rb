@@ -30,6 +30,13 @@ class RoomsController < ApplicationController
     end 
   end
 
+  def destroy
+    room = Room.find(params[:id])
+    room.delete
+
+    redirect_to rooms_path, notice: "The room have been deleted"
+  end
+
   protected
     def room_params
       params.require(:room).permit(:title, :description, :beds, :guests, :price_per_night, :image_url)
